@@ -11,7 +11,9 @@ int main() {
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     char name[20];
     char code[20];
-    int population, area, pib, tourist_attractions;
+    int population, area, tourist_attractions;
+    float population_density, pib_per_capta;
+    long pib;
     
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -25,21 +27,25 @@ int main() {
     printf("Digite a população: ");
     scanf("%d", &population);
 
-    printf("Digite a área: ");
+    printf("Digite a área (em km²): ");
     scanf("%d", &area);
 
-    printf("Digite o PIB: ");
-    scanf("%d", &pib);
+    printf("Digite o PIB (em bilhões): ");
+    scanf("%ld", &pib);
+    pib = pib * 1000000000;
 
     printf("Digite o número de pontos turísticos: ");
     scanf("%d", &tourist_attractions);
 
+    population_density = population / area;
+    pib_per_capta = pib / population;
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
     printf(
-        "Cidade: %s - Cod: %s\nPopulação: %d\nArea: %d\nPIB: %d\nPontos Turísticos: %d\n",
-        name, code, area, pib, tourist_attractions
+        "Estado: A\nCódigo da Carta: %s\nNome da Cidade: %s\nPopulação: %d\nArea: %d km²\nPIB: %ld bilhões de reais\n"
+        "PIB per Capita: %.2f reais\nNúmero de pontos turísticos: %d\n",
+        code, name, population, area, pib / 1000000000, pib_per_capta, tourist_attractions
     );
 
     return 0;
